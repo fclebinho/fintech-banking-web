@@ -1,31 +1,16 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/sGUxq83AZqJ
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { WalletIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import SelectLanguage from "@/components/select-language";
+import { useRouter } from "@/navigation";
 
 export default function Component() {
   const t = useTranslations("Home");
+  const router = useRouter();
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -39,15 +24,17 @@ export default function Component() {
           <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
             Gomes
           </span>
-          <p>Banking</p>
+          <p>Wallet</p>
         </Link>
         <div className="flex items-center gap-4">
           <SelectLanguage />
 
-          <Button size="sm" variant="ghost" asChild>
-            <Link href="#" prefetch={false}>
-              {t("sign-in")}
-            </Link>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => router.push("sign-in")}
+          >
+            {t("sign-in")}
           </Button>
 
           <Button size="sm" asChild>

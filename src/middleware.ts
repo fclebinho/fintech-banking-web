@@ -5,7 +5,7 @@ export default createMiddleware({
   localePrefix,
 
   // A list of all locales that are supported
-  locales: ["pt-BR", "en"],
+  locales,
 
   // Used when no locale matches
   defaultLocale: "pt-BR",

@@ -8,5 +8,16 @@
   "Language": {
     "en": "English",
     "pt-BR": "Portuguese"
+  },
+  "SignIn": {
+    "title": "Sign In",
+    "greetings": "Welcome back!",
+    "description": "Sign in to your account to continue.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "forgot-password": "Forgot password?",
+    "sign-up": "Sign Up",
+    "dont-have-account": "Don't have an account?"
   }
 }
