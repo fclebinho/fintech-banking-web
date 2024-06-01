@@ -19,5 +19,25 @@
     "forgot-password": "Esqueceu a senha?",
     "sign-up": "Cadastre-se",
     "dont-have-account": "Não tem uma conta?"
+  },
+  "SignUp": {
+    "title": "Vamos começar!",
+    "description": "Insira suas informações para criar uma conta.",
+    "name": "Nome Completo",
+    "phone-number": "Número de telefone",
+    "email": "Email",
+    "password": "Senha",
+    "submit": "Cadastrar",
+    "sign-in": "Entrar",
+    "already-have-account": "Já tem uma conta?"
+  },
+  "SignUpConfirm": {
+    "title": "Estamos quase lá!",
+    "description": "Enviamos um código de confirmação para o seu email. Por favor, insira o código abaixo.",
+    "code": "Código de Confirmação",
+    "submit": "Confirmar",
+    "resend-code": "Reenviar código",
+    "sign-in": "Entrar",
+    "already-have-account": "Já tem uma conta?"
   }
 }
