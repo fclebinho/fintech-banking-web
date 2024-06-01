@@ -30,5 +30,14 @@
     "submit": "Cadastrar",
     "sign-in": "Entrar",
     "already-have-account": "Já tem uma conta?"
+  },
+  "SignUpConfirm": {
+    "title": "Estamos quase lá!",
+    "description": "Enviamos um código de confirmação para o seu email. Por favor, insira o código abaixo.",
+    "code": "Código de Confirmação",
+    "submit": "Confirmar",
+    "resend-code": "Reenviar código",
+    "sign-in": "Entrar",
+    "already-have-account": "Já tem uma conta?"
   }
 }

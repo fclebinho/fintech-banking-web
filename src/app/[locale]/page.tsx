@@ -54,10 +54,8 @@ export default function Component() {
                   {t("description")}
                 </p>
                 <div className="mt-6 flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" asChild>
-                    <Link href="#" prefetch={false}>
-                      {t("sign-up")}
-                    </Link>
+                  <Button size="lg" onClick={() => router.push("/sign-up")}>
+                    {t("sign-up")}
                   </Button>
                 </div>
               </div>
