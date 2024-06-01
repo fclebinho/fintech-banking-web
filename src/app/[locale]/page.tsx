@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { WalletIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Component() {
+  const t = useTranslations("Home");
+
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
@@ -26,7 +29,7 @@ export default function Component() {
         <div className="flex items-center gap-4">
           <Button size="sm" variant="ghost" asChild>
             <Link href="#" prefetch={false}>
-              Sign In
+              {t("sign-in")}
             </Link>
           </Button>
 
