@@ -34,73 +34,67 @@ export default function SignUp() {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-950">
-      <div className="mx-auto max-w-sm space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
-            {t("description")}
-          </p>
-        </div>
-        <Card className="pt-4">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="fullname">{t("name")}</Label>
-                <Input
-                  id="fullname"
-                  placeholder="John Doe"
-                  {...register("fullName")}
-                />
-                <p>{errors.fullName?.message}</p>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phonenumber">{t("phone-number")}</Label>
-                <Input
-                  id="phonenumber"
-                  placeholder="00 00000-0000"
-                  {...register("phoneNumber")}
-                />
-                <p>{errors.phoneNumber?.message}</p>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">{t("email")}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  {...register("email")}
-                />
-                <p>{errors.email?.message}</p>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">{t("password")}</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  {...register("password")}
-                />
-                <p>{errors.password?.message}</p>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button type="submit" className="w-full">
-                {t("submit")}
-              </Button>
-            </CardFooter>
-          </form>
-        </Card>
-        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-          {t("already-have-account")}{" "}
-          <Link
-            href="/sign-in"
-            className="font-medium text-gray-900 hover:underline dark:text-gray-50"
-            prefetch={false}
-          >
-            {t("sign-in")}
-          </Link>
-        </div>
+    <div className="mx-auto max-w-sm space-y-6">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
+          {t("description")}
+        </p>
       </div>
-    </main>
+      <Card className="pt-4">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="fullname">{t("name")}</Label>
+              <Input
+                id="fullname"
+                placeholder="John Doe"
+                {...register("fullName")}
+              />
+              <p>{errors.fullName?.message}</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phonenumber">{t("phone-number")}</Label>
+              <Input
+                id="phonenumber"
+                placeholder="00 00000-0000"
+                {...register("phoneNumber")}
+              />
+              <p>{errors.phoneNumber?.message}</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">{t("email")}</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                {...register("email")}
+              />
+              <p>{errors.email?.message}</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">{t("password")}</Label>
+              <Input id="password" type="password" {...register("password")} />
+              <p>{errors.password?.message}</p>
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit" className="w-full">
+              {t("submit")}
+            </Button>
+          </CardFooter>
+        </form>
+      </Card>
+      <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+        {t("already-have-account")}{" "}
+        <Link
+          href="/sign-in"
+          className="font-medium text-gray-900 hover:underline dark:text-gray-50"
+          prefetch={false}
+        >
+          {t("sign-in")}
+        </Link>
+      </div>{" "}
+    </div>
   );
 }
