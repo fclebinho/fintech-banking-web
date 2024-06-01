@@ -4,6 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Button } from "@/components/ui/button";
+import { WalletIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,11 +17,11 @@ export default function Component() {
           className="flex items-center justify-center space-x-2"
           prefetch={false}
         >
-          <MountainIcon className="h-6 w-6" />
+          <WalletIcon className="h-6 w-6" />
           <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
             Gomes
           </span>
-          <p>Developer</p>
+          <p>Banking</p>
         </Link>
         <div className="flex items-center gap-4">
           <Button size="sm" variant="ghost" asChild>
