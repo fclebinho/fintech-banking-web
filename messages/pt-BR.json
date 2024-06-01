@@ -1,5 +1,12 @@
 {
   "Home": {
-    "sign-in": "Entrar"
+    "sign-in": "Entrar",
+    "sign-up": "Comece agora",
+    "title": "A plataforma completa para construir a Web",
+    "description": "Componentes lindamente projetados que você pode copiar e colar em seus aplicativos. Acessível. Personalizável. Código aberto."
+  },
+  "Language": {
+    "en": "Inglês",
+    "pt-BR": "Português"
   }
 }

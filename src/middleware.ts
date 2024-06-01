@@ -1,6 +1,9 @@
 import createMiddleware from "next-intl/middleware";
+import { locales, localePrefix } from "./navigation";
 
 export default createMiddleware({
+  localePrefix,
+
   // A list of all locales that are supported
   locales: ["pt-BR", "en"],
 

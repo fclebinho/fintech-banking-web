@@ -8,6 +8,21 @@ import { WalletIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import SelectLanguage from "@/components/select-language";
 
 export default function Component() {
   const t = useTranslations("Home");
@@ -27,6 +42,8 @@ export default function Component() {
           <p>Banking</p>
         </Link>
         <div className="flex items-center gap-4">
+          <SelectLanguage />
+
           <Button size="sm" variant="ghost" asChild>
             <Link href="#" prefetch={false}>
               {t("sign-in")}
@@ -35,7 +52,7 @@ export default function Component() {
 
           <Button size="sm" asChild>
             <Link href="#" prefetch={false}>
-              Get Started
+              {t("sign-up")}
             </Link>
           </Button>
         </div>
@@ -46,16 +63,15 @@ export default function Component() {
             <div className="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
               <div>
                 <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-                  The complete platform for building the Web
+                  {t("title")}
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Beautifully designed components that you can copy and paste
-                  into your apps. Accessible. Customizable. Open Source.
+                  {t("description")}
                 </p>
                 <div className="mt-6 flex flex-col gap-2 min-[400px]:flex-row">
                   <Button size="lg" asChild>
                     <Link href="#" prefetch={false}>
-                      Get Started
+                      {t("sign-up")}
                     </Link>
                   </Button>
                 </div>
