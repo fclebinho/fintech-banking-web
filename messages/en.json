@@ -19,5 +19,16 @@
     "forgot-password": "Forgot password?",
     "sign-up": "Sign Up",
     "dont-have-account": "Don't have an account?"
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "description": "Enter your information to create an account.",
+    "name": "Full Name",
+    "phone-number": "Phone Number",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign Up",
+    "sign-in": "Sign In",
+    "already-have-account": "Already have an account?"
   }
 }

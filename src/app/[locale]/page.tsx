@@ -32,15 +32,13 @@ export default function Component() {
           <Button
             size="sm"
             variant="ghost"
-            onClick={() => router.push("sign-in")}
+            onClick={() => router.push("/sign-in")}
           >
             {t("sign-in")}
           </Button>
 
-          <Button size="sm" asChild>
-            <Link href="#" prefetch={false}>
-              {t("sign-up")}
-            </Link>
+          <Button size="sm" onClick={() => router.push("/sign-up")}>
+            {t("sign-up")}
           </Button>
         </div>
       </header>

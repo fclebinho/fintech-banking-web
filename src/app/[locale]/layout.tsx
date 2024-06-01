@@ -24,10 +24,6 @@ export default async function RootLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
-  if (!locales.includes(locale)) {
-    notFound();
-  }
-
   return (
     <html lang={locale}>
       <body className={inter.className}>
