@@ -1,12 +1,12 @@
 {
   "Home": {
-    "sign-in": "Sign In",
-    "sign-up": "Sign Up",
-    "title": "The complete platform for building the Web",
-    "description": "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source."
+    "sign-in": "Entrar",
+    "sign-up": "Comece agora",
+    "title": "A plataforma completa para construir a Web",
+    "description": "Componentes lindamente projetados que você pode copiar e colar em seus aplicativos. Acessível. Personalizável. Código aberto."
   },
   "Language": {
-    "en": "English",
-    "pt-BR": "Portuguese"
+    "en": "Inglês",
+    "pt-BR": "Português"
   }
 }
