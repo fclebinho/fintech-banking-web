@@ -45,7 +45,7 @@ const SignupConfirm: React.FC = () => {
           {t("description")}
         </p>
       </div>
-      <Card className="pt-4">
+      <Card className="pt-4 w-96">
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent className="space-y-4">
             <div className="space-y-2 flex flex-col items-center justify-center">

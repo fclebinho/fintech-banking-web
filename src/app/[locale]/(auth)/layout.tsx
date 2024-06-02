@@ -6,10 +6,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-h-screen bg-gray-100 dark:bg-gray-950">
-      {/* Include shared UI here e.g. a header or sidebar */}
+    <section className="min-h-screen flex flex-col items-center justify-between bg-gray-100 dark:bg-gray-950">
       <Header />
       <main className="flex items-center justify-center">{children}</main>
+      <div />
     </section>
   );
 }

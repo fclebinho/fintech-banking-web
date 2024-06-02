@@ -14,34 +14,36 @@ export default function Component() {
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-        <Link
-          href="#"
-          className="flex items-center justify-center space-x-2"
-          prefetch={false}
-        >
-          <WalletIcon className="h-6 w-6" />
-          <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
-            Gomes
-          </span>
-          <p>Wallet</p>
-        </Link>
-        <div className="flex items-center gap-4">
-          <SelectLanguage />
-
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => router.push("/sign-in")}
+      <div className="container px-4 md:px-6 space-y-10 xl:space-y-16">
+        <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-center justify-center space-x-2"
+            prefetch={false}
           >
-            {t("sign-in")}
-          </Button>
+            <WalletIcon className="h-6 w-6" />
+            <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
+              Gomes
+            </span>
+            <p>Wallet</p>
+          </Link>
+          <div className="flex items-center gap-4">
+            <SelectLanguage />
 
-          <Button size="sm" onClick={() => router.push("/sign-up")}>
-            {t("sign-up")}
-          </Button>
-        </div>
-      </header>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => router.push("/sign-in")}
+            >
+              {t("sign-in")}
+            </Button>
+
+            <Button size="sm" onClick={() => router.push("/sign-up")}>
+              {t("sign-up")}
+            </Button>
+          </div>
+        </header>
+      </div>
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32">
           <div className="container px-4 md:px-6 space-y-10 xl:space-y-16">
