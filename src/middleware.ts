@@ -26,7 +26,7 @@ const authMiddleware = withAuth(
     callbacks: {
       authorized: ({ token, ...rest }) => {
         console.log("authorized.token", token, token != null);
-        console.log("authorized.rest", rest);
+        // console.log("authorized.rest", rest);
         return token != null;
       },
     },

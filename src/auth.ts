@@ -57,6 +57,7 @@ const auth: AuthOptions = {
   },
   callbacks: {
     async jwt({ token }) {
+      console.log("jwt.token", token);
       if (token.sub) {
         return token;
       }
@@ -64,8 +65,9 @@ const auth: AuthOptions = {
       throw new Error("No token found");
     },
     async session({ session, token }) {
+      console.log("session.token", token);
       if (token.sub) {
-        return { ...session, accessToken: token.sub };
+        return { ...session, accessToken: token.sub, token };
       }
 
       throw new Error("No session found");
