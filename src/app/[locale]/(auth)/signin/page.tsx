@@ -86,7 +86,12 @@ const SignIn: React.FC = () => {
                   {t("forgot-password")}
                 </Link>
               </div>
-              <Input id="password" type="password" {...register("password")} />
+              <Input
+                id="password"
+                type="password"
+                placeholder="********"
+                {...register("password")}
+              />
               <p>{errors.password?.message}</p>
             </div>
           </CardContent>

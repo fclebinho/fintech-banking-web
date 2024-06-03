@@ -74,7 +74,12 @@ export default function SignUp() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">{t("password")}</Label>
-              <Input id="password" type="password" {...register("password")} />
+              <Input
+                id="password"
+                type="password"
+                placeholder="********"
+                {...register("password")}
+              />
               <p>{errors.password?.message}</p>
             </div>
           </CardContent>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -20,6 +22,7 @@ import Image from "next/image";
 import { Link } from "@/navigation";
 import { WalletIcon } from "lucide-react";
 import Logo from "@/components/logo";
+import { signOut } from "next-auth/react";
 
 export default function Dashboard() {
   return (
@@ -114,7 +117,9 @@ export default function Dashboard() {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => signOut()}>
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

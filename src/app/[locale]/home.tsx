@@ -34,7 +34,7 @@ const Home: FC<Props> = ({ session }) => {
                 </p>
                 <div className="mt-6 flex flex-col gap-2 min-[400px]:flex-row">
                   <Button size="lg" onClick={() => router.push("/signup")}>
-                    {t("sign-up")}
+                    {t("get-started")}
                   </Button>
                 </div>
               </div>

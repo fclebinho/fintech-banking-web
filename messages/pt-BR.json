@@ -1,7 +1,8 @@
 {
   "Home": {
     "sign-in": "Entrar",
-    "sign-up": "Cadastre-se agora",
+    "sign-up": "Criar conta",
+    "get-started": "Comece agora",
     "title": "A plataforma completa para construir a Web",
     "description": "Componentes lindamente projetados que você pode copiar e colar em seus aplicativos. Acessível. Personalizável. Código aberto.",
     "dashboard": "Painel de controle"

@@ -19,6 +19,8 @@ const SelectLanguage: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  console.log("pathname", pathname);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -22,20 +22,16 @@ const Header: React.FC<HeaderProps> = ({ authenticated }) => {
         <SelectLanguage />
 
         {authenticated ? (
-          <Button size="sm" onClick={() => router.push("/dashboard")}>
+          <Button onClick={() => router.push("/dashboard")}>
             {t("dashboard")}
           </Button>
         ) : (
           <>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => router.push("/signin")}
-            >
+            <Button variant="ghost" onClick={() => router.push("/dashboard")}>
               {t("sign-in")}
             </Button>
 
-            <Button size="sm" onClick={() => router.push("/signup")}>
+            <Button onClick={() => router.push("/signup")}>
               {t("sign-up")}
             </Button>
           </>
