@@ -7,42 +7,19 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import SelectLanguage from "@/components/select-language";
 import { useRouter } from "@/navigation";
+import Logo from "@/components/logo";
+import { useSession } from "next-auth/react";
+import Header from "@/components/header";
 
 export default function Component() {
   const t = useTranslations("Home");
   const router = useRouter();
+  const { data } = useSession();
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <div className="container px-4 md:px-6 space-y-10 xl:space-y-16">
-        <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center justify-center space-x-2"
-            prefetch={false}
-          >
-            <WalletIcon className="h-6 w-6" />
-            <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-50">
-              Gomes
-            </span>
-            <p>Wallet</p>
-          </Link>
-          <div className="flex items-center gap-4">
-            <SelectLanguage />
-
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => router.push("/sign-in")}
-            >
-              {t("sign-in")}
-            </Button>
-
-            <Button size="sm" onClick={() => router.push("/sign-up")}>
-              {t("sign-up")}
-            </Button>
-          </div>
-        </header>
+        <Header authenticated={!!data?.accessToken} />
       </div>
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32">
@@ -56,7 +33,7 @@ export default function Component() {
                   {t("description")}
                 </p>
                 <div className="mt-6 flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" onClick={() => router.push("/sign-up")}>
+                  <Button size="lg" onClick={() => router.push("/signup")}>
                     {t("sign-up")}
                   </Button>
                 </div>

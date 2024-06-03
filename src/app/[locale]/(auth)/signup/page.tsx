@@ -88,7 +88,7 @@ export default function SignUp() {
       <div className="text-center text-sm text-gray-500 dark:text-gray-400">
         {t("already-have-account")}{" "}
         <Link
-          href="/sign-in"
+          href="/signin"
           className="font-medium text-gray-900 hover:underline dark:text-gray-50"
           prefetch={false}
         >

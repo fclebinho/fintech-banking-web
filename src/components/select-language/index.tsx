@@ -10,7 +10,7 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { LanguagesIcon } from "lucide-react";
-import { useRouter, usePathname } from "@/navigation";
+import { useRouter, usePathname, locales } from "@/navigation";
 
 // import { Container } from './styles';
 
@@ -28,16 +28,14 @@ const SelectLanguage: React.FC = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem
-          onClick={() => router.push(pathname, { locale: "pt-BR" })}
-        >
-          {t("pt-BR")}
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => router.push(pathname, { locale: "en" })}
-        >
-          {t("en")}
-        </DropdownMenuItem>
+        {locales.map((locale) => (
+          <DropdownMenuItem
+            key={locale}
+            onClick={() => router.push(pathname, { locale })}
+          >
+            {t(locale)}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
