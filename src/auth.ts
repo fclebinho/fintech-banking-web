@@ -67,7 +67,7 @@ const auth: AuthOptions = {
     async session({ session, token }) {
       console.log("session.token", token);
       if (token.sub) {
-        return { ...session, accessToken: token.sub, token };
+        return { ...session, accessToken: token.sub };
       }
 
       throw new Error("No session found");
@@ -75,6 +75,7 @@ const auth: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
+  useSecureCookies: process.env.NODE_ENV === "production",
 };
 
 export default auth;

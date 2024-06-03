@@ -24,7 +24,7 @@ const authMiddleware = withAuth(
   (req) => intlMiddleware(req),
   {
     callbacks: {
-      authorized: ({ token, ...rest }) => {
+      authorized: async ({ token, ...rest }) => {
         console.log("authorized.token", token, token != null);
         // console.log("authorized.rest", rest);
         return token != null;
