@@ -19,6 +19,7 @@ const auth: AuthOptions = {
         });
 
         const url = `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`;
+        console.log("url", url);
 
         return await fetch(url, {
           method: "POST",
@@ -28,17 +29,17 @@ const auth: AuthOptions = {
           },
           body,
         })
-          .then((response) => {
-            const data = response.json();
-
-            return data;
-          })
+          .then((response) => response.json())
           .then((data) => {
+            console.log("data", data);
+
             if (data.status === 400) {
+              console.error("data.status", data.status);
               throw new Error(data.title);
             }
 
             const authorization = { id: data.access_token };
+            console.log("authorization", authorization);
 
             if (authorization) {
               return authorization;
