@@ -1,7 +1,8 @@
 {
   "Home": {
     "sign-in": "Sign In",
-    "sign-up": "Cadastre-se agora",
+    "sign-up": "Criar conta",
+    "get-started": "Comece agora",
     "title": "The complete platform for building the Web",
     "description": "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
     "dashboard": "Painel de controle"
