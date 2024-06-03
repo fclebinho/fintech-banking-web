@@ -26,6 +26,7 @@ const authMiddleware = withAuth(
     callbacks: {
       authorized: async ({ token, ...rest }) => {
         console.log("authorized.token", token, token != null);
+        console.log("authorized.node_env", process.env.NODE_ENV);
         // console.log("authorized.rest", rest);
         return token != null;
       },
