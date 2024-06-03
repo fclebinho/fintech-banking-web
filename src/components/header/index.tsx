@@ -9,9 +9,10 @@ import { useRouter } from "@/navigation";
 
 type HeaderProps = {
   authenticated: boolean;
+  locale: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ authenticated }) => {
+const Header: React.FC<HeaderProps> = ({ authenticated, locale }) => {
   const t = useTranslations("Home");
   const router = useRouter();
 
@@ -19,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ authenticated }) => {
     <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
       <Logo />
       <div className="flex items-center gap-4">
-        <SelectLanguage />
+        <SelectLanguage locale={locale} />
 
         {authenticated ? (
           <Button onClick={() => router.push("/dashboard")}>

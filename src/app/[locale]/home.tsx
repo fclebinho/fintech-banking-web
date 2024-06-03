@@ -10,16 +10,17 @@ import { FC } from "react";
 
 type Props = {
   session: Session | null;
+  locale: string;
 };
 
-const Home: FC<Props> = ({ session }) => {
+const Home: FC<Props> = ({ session, locale }) => {
   const t = useTranslations("Home");
   const router = useRouter();
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <div className="container px-4 md:px-6 space-y-10 xål:space-y-16">
-        <Header authenticated={!!session} />
+        <Header authenticated={!!session} locale={locale} />
       </div>
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32">

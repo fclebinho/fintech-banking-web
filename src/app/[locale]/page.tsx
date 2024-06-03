@@ -1,8 +1,16 @@
 import { getServerSession } from "next-auth";
 import auth from "../../auth";
-import Dashboard from "./home";
+import Home from "./home";
 
-export default async function IndexPage() {
+type IndexPageProps = {
+  params: {
+    locale: string;
+  };
+};
+
+export default async function IndexPage({
+  params: { locale },
+}: IndexPageProps) {
   const session = await getServerSession(auth);
-  return <Dashboard session={session} />;
+  return <Home session={session} locale={locale} />;
 }

@@ -14,7 +14,7 @@ const Header: React.FC = () => {
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-4">
-          <SelectLanguage />
+          <SelectLanguage locale="pt-BR" />
         </div>
       </header>
     </div>

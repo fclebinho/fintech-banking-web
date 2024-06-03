@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   DropdownMenu,
@@ -9,37 +9,47 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { LanguagesIcon } from "lucide-react";
+import { ChevronDownIcon, LanguagesIcon } from "lucide-react";
 import { useRouter, usePathname, locales } from "@/navigation";
 
-// import { Container } from './styles';
+type SelectLanguageProps = {
+  locale?: string;
+};
 
-const SelectLanguage: React.FC = () => {
+const SelectLanguage: React.FC<SelectLanguageProps> = ({ locale }) => {
   const t = useTranslations("Language");
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log("pathname", pathname);
-
+  console.log("locale", locale);
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
-          <LanguagesIcon className="h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">Toggle language</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {locales.map((locale) => (
-          <DropdownMenuItem
-            key={locale}
-            onClick={() => router.push(pathname, { locale })}
-          >
-            {t(locale)}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="flex">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="uppercase text-sm">
+            {locale ? (
+              <div className="flex items-center justify-center gap-2">
+                {locale} <ChevronDownIcon className="h-[1.2rem] w-[1.2rem]" />
+              </div>
+            ) : (
+              <LanguagesIcon className="h-[1.2rem] w-[1.2rem]" />
+            )}
+
+            <span className="sr-only">Toggle language</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {locales.map((locale) => (
+            <DropdownMenuItem
+              key={locale}
+              onClick={() => router.push(pathname, { locale })}
+            >
+              {t(locale)}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 };
 
