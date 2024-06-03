@@ -19,7 +19,6 @@ const auth: AuthOptions = {
         });
 
         const url = `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`;
-        console.log("url", url);
 
         return await fetch(url, {
           method: "POST",
@@ -31,15 +30,11 @@ const auth: AuthOptions = {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log("data", data);
-
             if (data.status === 400) {
-              console.error("data.status", data.status);
               throw new Error(data.title);
             }
 
             const authorization = { id: data.access_token };
-            console.log("authorization", authorization);
 
             if (authorization) {
               return authorization;
@@ -50,60 +45,6 @@ const auth: AuthOptions = {
       },
     }),
   ],
-  session: { strategy: "jwt" },
-  jwt: {
-    secret: process.env.NEXTAUTH_JWT_PRIVATE_KEY,
-    maxAge: 24 * 60 * 60,
-  },
-  callbacks: {
-    async jwt({ token }) {
-      console.log("jwt.token", token);
-      if (token.sub) {
-        return token;
-      }
-
-      throw new Error("No token found");
-    },
-    async session({ session, token }) {
-      console.log("session.token", token);
-      if (token.sub) {
-        return { ...session, accessToken: token.sub };
-      }
-
-      throw new Error("No session found");
-    },
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
-  useSecureCookies: process.env.NODE_ENV === "production",
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
-    callbackUrl: {
-      name: `__Secure-next-auth.callback-url`,
-      options: {
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
-    csrfToken: {
-      name: `__Host-next-auth.csrf-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
-  },
 };
 
 export default auth;

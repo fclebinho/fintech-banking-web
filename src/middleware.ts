@@ -6,8 +6,6 @@ import { locales } from "./navigation";
 const publicPages = [
   "/",
   "/signin",
-  "/signup",
-  "/signup-confirm",
   // (/secret requires auth)
 ];
 
@@ -24,12 +22,7 @@ const authMiddleware = withAuth(
   (req) => intlMiddleware(req),
   {
     callbacks: {
-      authorized: async ({ token, ...rest }) => {
-        console.log("authorized.token", token, token != null);
-        console.log("authorized.node_env", process.env.NODE_ENV);
-        // console.log("authorized.rest", rest);
-        return token != null;
-      },
+      authorized: ({ token }) => token != null,
     },
     pages: {
       signIn: "/signin",

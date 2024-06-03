@@ -9,12 +9,7 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { status } = useSession();
   const router = useRouter();
-
-  if (status === "authenticated") {
-    router.replace("/dashboard");
-  }
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-between bg-gray-100 dark:bg-gray-950">

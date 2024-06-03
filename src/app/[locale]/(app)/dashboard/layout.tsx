@@ -1,8 +1,7 @@
-import LoadingPage from "@/components/loading-page";
 import React, { PropsWithChildren } from "react";
 
-const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  return <LoadingPage>{children}</LoadingPage>;
+const AppLayout: React.FC<PropsWithChildren> = async ({ children }) => {
+  return <>{children}</>;
 };
 
 export default AppLayout;

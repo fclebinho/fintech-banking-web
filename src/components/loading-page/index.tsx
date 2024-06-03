@@ -1,17 +1,15 @@
 "use client";
 
+import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { PropsWithChildren } from "react";
 
-const LoadingPage: React.FC<PropsWithChildren> = ({ children }) => {
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // The user is not authenticated, handle it here.
-    },
-  });
+interface LoadingPageProps extends PropsWithChildren {
+  session: Session | null;
+}
 
-  if (status === "loading") {
+const LoadingPage: React.FC<LoadingPageProps> = ({ children, session }) => {
+  if (!session) {
     return "Loading or not authenticated...";
   }
 
