@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import Header from "./components/header";
 import { useRouter, redirect } from "@/navigation";
 
