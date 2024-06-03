@@ -1,12 +1,13 @@
 {
   "Home": {
     "sign-in": "Sign In",
-    "sign-up": "Get Started",
+    "sign-up": "Cadastre-se agora",
     "title": "The complete platform for building the Web",
-    "description": "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source."
+    "description": "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
+    "dashboard": "Painel de controle"
   },
   "Language": {
-    "en": "English",
+    "en-US": "Inglês",
     "pt-BR": "Portuguese"
   },
   "SignIn": {
