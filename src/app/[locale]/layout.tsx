@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/toaster";
 import { Provider } from "@/components/provider";
 import { NextIntlClientProvider } from "next-intl";
+import { Session } from "next-auth";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -15,10 +16,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params: { session, locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: { session: Session | null; locale: string };
 }>) {
   // Providing all messages to the client
   // side is the easiest way to get started
@@ -28,7 +29,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          <Provider>
+          <Provider session={session}>
             {children}
             <Toaster />
           </Provider>

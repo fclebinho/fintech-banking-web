@@ -1,8 +1,17 @@
 "use client";
 
+import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { FC, PropsWithChildren } from "react";
 
-export const Provider: FC<PropsWithChildren> = ({ children }) => {
-  return <SessionProvider>{children}</SessionProvider>;
+interface ProviderProps extends PropsWithChildren {
+  session: Session | null;
+}
+
+export const Provider: FC<ProviderProps> = ({ children, session }) => {
+  return (
+    <SessionProvider session={session} basePath="/api/auth">
+      {children}
+    </SessionProvider>
+  );
 };
