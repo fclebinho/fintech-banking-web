@@ -1,511 +1,481 @@
-"use client";
-
-import { Input } from "@/components/ui/input";
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+  ChevronLeft,
+  ChevronRight,
+  Copy,
+  CreditCard,
+  File,
+  ListFilter,
+  MoreVertical,
+  Truck,
+} from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+} from "@/components/ui/pagination";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import {
   Table,
-  TableHeader,
-  TableRow,
-  TableHead,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
-import Image from "next/image";
-import { Link } from "@/navigation";
-import { WalletIcon } from "lucide-react";
-import Logo from "@/components/logo";
-import { signOut } from "next-auth/react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Dashboard() {
   return (
-    <div className="grid min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
-        <div className="flex flex-col gap-2">
-          <div className="flex h-[60px] items-center px-6">
-            <Logo />
-          </div>
-          <div className="flex-1">
-            <nav className="grid items-start px-4 text-sm font-medium">
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                Dashboard
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                <ShoppingCartIcon className="h-4 w-4" />
-                Transactions
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                <PackageIcon className="h-4 w-4" />
-                Products
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                <UsersIcon className="h-4 w-4" />
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                <LineChartIcon className="h-4 w-4" />
-                Analytics
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
-          <Link href="#" className="lg:hidden" prefetch={false}>
-            <Package2Icon className="h-6 w-6" />
-            <span className="sr-only">Home</span>
-          </Link>
-          <div className="flex-1">
-            <h1 className="font-semibold text-lg">Recent Transactions</h1>
-          </div>
-          <div className="flex flex-1 items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-            <form className="ml-auto flex-1 sm:flex-initial">
-              <div className="relative">
-                <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                <Input
-                  type="search"
-                  placeholder="Search transactions..."
-                  className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px] bg-white"
-                />
+    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
+      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+          <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
+            <CardHeader className="pb-3">
+              <CardTitle>Your Orders</CardTitle>
+              <CardDescription className="max-w-lg text-balance leading-relaxed">
+                Introducing Our Dynamic Orders Dashboard for Seamless Management
+                and Insightful Analysis.
+              </CardDescription>
+            </CardHeader>
+            <CardFooter>
+              <Button>Create New Order</Button>
+            </CardFooter>
+          </Card>
+          <Card x-chunk="dashboard-05-chunk-1">
+            <CardHeader className="pb-2">
+              <CardDescription>This Week</CardDescription>
+              <CardTitle className="text-4xl">$1,329</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-xs text-muted-foreground">
+                +25% from last week
               </div>
-            </form>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <Image
-                    src="/placeholder.svg"
-                    width="32"
-                    height="32"
-                    className="rounded-full"
-                    alt="Avatar"
-                  />
-                  <span className="sr-only">Toggle user menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()}>
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            </CardContent>
+            <CardFooter>
+              <Progress value={25} aria-label="25% increase" />
+            </CardFooter>
+          </Card>
+          <Card x-chunk="dashboard-05-chunk-2">
+            <CardHeader className="pb-2">
+              <CardDescription>This Month</CardDescription>
+              <CardTitle className="text-4xl">$5,329</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-xs text-muted-foreground">
+                +10% from last month
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Progress value={12} aria-label="12% increase" />
+            </CardFooter>
+          </Card>
+        </div>
+        <Tabs defaultValue="week">
+          <div className="flex items-center">
+            <TabsList>
+              <TabsTrigger value="week">Week</TabsTrigger>
+              <TabsTrigger value="month">Month</TabsTrigger>
+              <TabsTrigger value="year">Year</TabsTrigger>
+            </TabsList>
+            <div className="ml-auto flex items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-7 gap-1 text-sm"
+                  >
+                    <ListFilter className="h-3.5 w-3.5" />
+                    <span className="sr-only sm:not-sr-only">Filter</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>Filter by</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuCheckboxItem checked>
+                    Fulfilled
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>Declined</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>Refunded</DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button size="sm" variant="outline" className="h-7 gap-1 text-sm">
+                <File className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only">Export</span>
+              </Button>
+            </div>
           </div>
-        </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-          <div className="border shadow-sm rounded-lg p-2">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px]">Date</TableHead>
-                  <TableHead className="min-w-[150px]">Description</TableHead>
-                  <TableHead className="hidden md:table-cell">
-                    Category
-                  </TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                  <TableHead className="hidden sm:table-cell">Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Feb 20, 2022</TableCell>
-                  <TableCell>Online Purchase</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Shopping
-                  </TableCell>
-                  <TableCell className="text-right">$42.25</TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    Completed
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Jan 5, 2022</TableCell>
-                  <TableCell>Subscription Renewal</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Subscriptions
-                  </TableCell>
-                  <TableCell className="text-right">$74.99</TableCell>
-                  <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Aug 3, 2021</TableCell>
-                  <TableCell>Offline Purchase</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Shopping
-                  </TableCell>
-                  <TableCell className="text-right">$64.75</TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    Pending
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Jul 15, 2021</TableCell>
-                  <TableCell>Online Purchase</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Shopping
-                  </TableCell>
-                  <TableCell className="text-right">$34.50</TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    Completed
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Jun 5, 2021</TableCell>
-                  <TableCell>Subscription Renewal</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Subscriptions
-                  </TableCell>
-                  <TableCell className="text-right">$89.99</TableCell>
-                  <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>May 20, 2021</TableCell>
-                  <TableCell>Online Purchase</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Shopping
-                  </TableCell>
-                  <TableCell className="text-right">$24.99</TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    Pending
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Nov 2, 2021</TableCell>
-                  <TableCell>Subscription Renewal</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Subscriptions
-                  </TableCell>
-                  <TableCell className="text-right">$99.99</TableCell>
-                  <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Oct 7, 2021</TableCell>
-                  <TableCell>Online Purchase</TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    Shopping
-                  </TableCell>
-                  <TableCell className="text-right">$67.50</TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    Completed
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View transaction</DropdownMenuItem>
-                        <DropdownMenuItem>Download receipt</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-        </main>
+          <TabsContent value="week">
+            <Card x-chunk="dashboard-05-chunk-3">
+              <CardHeader className="px-7">
+                <CardTitle>Orders</CardTitle>
+                <CardDescription>
+                  Recent orders from your store.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Customer</TableHead>
+                      <TableHead className="hidden sm:table-cell">
+                        Type
+                      </TableHead>
+                      <TableHead className="hidden sm:table-cell">
+                        Status
+                      </TableHead>
+                      <TableHead className="hidden md:table-cell">
+                        Date
+                      </TableHead>
+                      <TableHead className="text-right">Amount</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow className="bg-accent">
+                      <TableCell>
+                        <div className="font-medium">Liam Johnson</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          liam@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Sale
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="secondary">
+                          Fulfilled
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-23
+                      </TableCell>
+                      <TableCell className="text-right">$250.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Olivia Smith</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          olivia@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Refund
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="outline">
+                          Declined
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-24
+                      </TableCell>
+                      <TableCell className="text-right">$150.00</TableCell>
+                    </TableRow>
+                    {/* <TableRow>
+                          <TableCell>
+                            <div className="font-medium">Liam Johnson</div>
+                            <div className="hidden text-sm text-muted-foreground md:inline">
+                              liam@example.com
+                            </div>
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            Sale
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            <Badge className="text-xs" variant="secondary">
+                              Fulfilled
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="hidden md:table-cell">
+                            2023-06-23
+                          </TableCell>
+                          <TableCell className="text-right">$250.00</TableCell>
+                        </TableRow> */}
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Noah Williams</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          noah@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Subscription
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="secondary">
+                          Fulfilled
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-25
+                      </TableCell>
+                      <TableCell className="text-right">$350.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Emma Brown</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          emma@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Sale
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="secondary">
+                          Fulfilled
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-26
+                      </TableCell>
+                      <TableCell className="text-right">$450.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Liam Johnson</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          liam@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Sale
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="secondary">
+                          Fulfilled
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-23
+                      </TableCell>
+                      <TableCell className="text-right">$250.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Olivia Smith</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          olivia@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Refund
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="outline">
+                          Declined
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-24
+                      </TableCell>
+                      <TableCell className="text-right">$150.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>
+                        <div className="font-medium">Emma Brown</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          emma@example.com
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        Sale
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge className="text-xs" variant="secondary">
+                          Fulfilled
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        2023-06-26
+                      </TableCell>
+                      <TableCell className="text-right">$450.00</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
-    </div>
-  );
-}
-
-function HomeIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-}
-
-function LineChartIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 3v18h18" />
-      <path d="m19 9-5 5-4-4-3 3" />
-    </svg>
-  );
-}
-
-function MoveHorizontalIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="18 8 22 12 18 16" />
-      <polyline points="6 8 2 12 6 16" />
-      <line x1="2" x2="22" y1="12" y2="12" />
-    </svg>
-  );
-}
-
-function Package2Icon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
-      <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
-      <path d="M12 3v6" />
-    </svg>
-  );
-}
-
-function PackageIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m7.5 4.27 9 5.15" />
-      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-      <path d="m3.3 7 8.7 5 8.7-5" />
-      <path d="M12 22V12" />
-    </svg>
-  );
-}
-
-function SearchIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  );
-}
-
-function ShoppingCartIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="8" cy="21" r="1" />
-      <circle cx="19" cy="21" r="1" />
-      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-    </svg>
-  );
-}
-
-function UsersIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
+      <div>
+        <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
+          <CardHeader className="flex flex-row items-start bg-muted/50">
+            <div className="grid gap-0.5">
+              <CardTitle className="group flex items-center gap-2 text-lg">
+                Order Oe31b70H
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
+                >
+                  <Copy className="h-3 w-3" />
+                  <span className="sr-only">Copy Order ID</span>
+                </Button>
+              </CardTitle>
+              <CardDescription>Date: November 23, 2023</CardDescription>
+            </div>
+            <div className="ml-auto flex items-center gap-1">
+              <Button size="sm" variant="outline" className="h-8 gap-1">
+                <Truck className="h-3.5 w-3.5" />
+                <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
+                  Track Order
+                </span>
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="icon" variant="outline" className="h-8 w-8">
+                    <MoreVertical className="h-3.5 w-3.5" />
+                    <span className="sr-only">More</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                  <DropdownMenuItem>Export</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Trash</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </CardHeader>
+          <CardContent className="p-6 text-sm">
+            <div className="grid gap-3">
+              <div className="font-semibold">Order Details</div>
+              <ul className="grid gap-3">
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    Glimmer Lamps x <span>2</span>
+                  </span>
+                  <span>$250.00</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    Aqua Filters x <span>1</span>
+                  </span>
+                  <span>$49.00</span>
+                </li>
+              </ul>
+              <Separator className="my-2" />
+              <ul className="grid gap-3">
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span>$299.00</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Shipping</span>
+                  <span>$5.00</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Tax</span>
+                  <span>$25.00</span>
+                </li>
+                <li className="flex items-center justify-between font-semibold">
+                  <span className="text-muted-foreground">Total</span>
+                  <span>$329.00</span>
+                </li>
+              </ul>
+            </div>
+            <Separator className="my-4" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-3">
+                <div className="font-semibold">Shipping Information</div>
+                <address className="grid gap-0.5 not-italic text-muted-foreground">
+                  <span>Liam Johnson</span>
+                  <span>1234 Main St.</span>
+                  <span>Anytown, CA 12345</span>
+                </address>
+              </div>
+              <div className="grid auto-rows-max gap-3">
+                <div className="font-semibold">Billing Information</div>
+                <div className="text-muted-foreground">
+                  Same as shipping address
+                </div>
+              </div>
+            </div>
+            <Separator className="my-4" />
+            <div className="grid gap-3">
+              <div className="font-semibold">Customer Information</div>
+              <dl className="grid gap-3">
+                <div className="flex items-center justify-between">
+                  <dt className="text-muted-foreground">Customer</dt>
+                  <dd>Liam Johnson</dd>
+                </div>
+                <div className="flex items-center justify-between">
+                  <dt className="text-muted-foreground">Email</dt>
+                  <dd>
+                    <a href="mailto:">liam@acme.com</a>
+                  </dd>
+                </div>
+                <div className="flex items-center justify-between">
+                  <dt className="text-muted-foreground">Phone</dt>
+                  <dd>
+                    <a href="tel:">+1 234 567 890</a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <Separator className="my-4" />
+            <div className="grid gap-3">
+              <div className="font-semibold">Payment Information</div>
+              <dl className="grid gap-3">
+                <div className="flex items-center justify-between">
+                  <dt className="flex items-center gap-1 text-muted-foreground">
+                    <CreditCard className="h-4 w-4" />
+                    Visa
+                  </dt>
+                  <dd>**** **** **** 4532</dd>
+                </div>
+              </dl>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
+            <div className="text-xs text-muted-foreground">
+              Updated <time dateTime="2023-11-23">November 23, 2023</time>
+            </div>
+            <Pagination className="ml-auto mr-0 w-auto">
+              <PaginationContent>
+                <PaginationItem>
+                  <Button size="icon" variant="outline" className="h-6 w-6">
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                    <span className="sr-only">Previous Order</span>
+                  </Button>
+                </PaginationItem>
+                <PaginationItem>
+                  <Button size="icon" variant="outline" className="h-6 w-6">
+                    <ChevronRight className="h-3.5 w-3.5" />
+                    <span className="sr-only">Next Order</span>
+                  </Button>
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </CardFooter>
+        </Card>
+      </div>
+    </main>
   );
 }

@@ -1,20 +1,24 @@
 import { Link } from "@/navigation";
-import { WalletIcon } from "lucide-react";
-import React from "react";
+import { Wallet, WalletIcon } from "lucide-react";
+import React, { ReactNode } from "react";
 
-// import { Container } from './styles';
+type LogoProps = {
+  children?: ReactNode;
+  href?: string;
+};
 
-const Logo: React.FC = () => {
+const Logo: React.FC<LogoProps> = ({ children, href = "/" }) => {
   return (
-    <Link
-      href="/"
-      className="flex items-center justify-center space-x-2"
-      prefetch={false}
-    >
-      <WalletIcon className="h-10 w-10 text-primary" />
-      <p className="flex text-xl font-bold">Garimpei</p>
-      <p className="flex text-xl font-thin">Wallet</p>
-    </Link>
+    <div className="flex items-center justify-center gap-2">
+      <Link
+        href={href}
+        className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+      >
+        <Wallet className="h-4 w-4 transition-all group-hover:scale-110" />
+        <span className="sr-only">Acme Inc</span>
+      </Link>
+      {children}
+    </div>
   );
 };
 

@@ -18,7 +18,9 @@ const Header: React.FC<HeaderProps> = ({ authenticated, locale }) => {
 
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-      <Logo />
+      <Logo>
+        <p className="flex text-xl font-thin">Wallet</p>
+      </Logo>
       <div className="flex items-center gap-4">
         <SelectLanguage locale={locale} />
 
