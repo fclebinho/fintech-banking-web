@@ -42,7 +42,6 @@ export default function SignUp() {
     setLoading(true);
     signUp(data.fullName, data.phoneNumber, data.email, data.password)
       .then((response) => {
-        console.log(response);
         if (response?.status) {
           toast({
             variant: "destructive",

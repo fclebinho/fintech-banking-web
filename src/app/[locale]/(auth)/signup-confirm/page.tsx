@@ -44,13 +44,11 @@ const SignupConfirm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     const { confirmationCode } = data;
 
     setLoading(true);
     confirmSignUp({ email, confirmationCode })
       .then((response) => {
-        console.log(response);
         if (response?.status) {
           toast({
             variant: "destructive",

@@ -45,8 +45,6 @@ const SignIn: FC = () => {
       redirect: false,
     })
       .then((response) => {
-        console.log(response);
-
         const { message, code } = JSON.parse(response?.error ?? "{}");
 
         if (message) {
