@@ -3,6 +3,7 @@ import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { FC, PropsWithChildren } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 interface RootLayoutProps extends PropsWithChildren {
   params: { locale: string };
@@ -23,6 +24,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children, params: { locale } }) => {
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>
