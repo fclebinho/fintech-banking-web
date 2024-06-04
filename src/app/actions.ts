@@ -44,7 +44,7 @@ export const signUp = async (
   }).then((response) => response.json());
 };
 
-type ConfirmSignUpRequest = { email: string; code: string };
+type ConfirmSignUpRequest = { email: string; confirmationCode: string };
 
 export const confirmSignUp = async (req: ConfirmSignUpRequest) => {
   const body = JSON.stringify(req);

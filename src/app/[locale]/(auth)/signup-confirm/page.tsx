@@ -23,7 +23,7 @@ import { toast } from "@/components/ui/use-toast";
 
 const formSchema = yup
   .object({
-    code: yup.string().length(6).required(),
+    confirmationCode: yup.string().length(6).required(),
   })
   .required();
 
@@ -45,10 +45,10 @@ const SignupConfirm: React.FC = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    const { code } = data;
+    const { confirmationCode } = data;
 
     setLoading(true);
-    confirmSignUp({ email, code })
+    confirmSignUp({ email, confirmationCode })
       .then((response) => {
         console.log(response);
         if (response?.status) {
@@ -75,9 +75,11 @@ const SignupConfirm: React.FC = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2 flex flex-col items-center justify-center">
               <div>
-                <Label htmlFor="code">{t("code")}</Label>
+                <Label htmlFor="confirmationCode">
+                  {t("confirmationCode")}
+                </Label>
                 <Controller
-                  name="code"
+                  name="confirmationCode"
                   control={control}
                   render={({ field }) => (
                     <InputOTP
@@ -97,7 +99,7 @@ const SignupConfirm: React.FC = () => {
                   )}
                 />
 
-                <p>{errors.code?.message}</p>
+                <p>{errors.confirmationCode?.message}</p>
               </div>
             </div>
             <ResendCodeButton email={email ?? ""} />
