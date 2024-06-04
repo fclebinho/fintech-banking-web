@@ -36,7 +36,7 @@
   "SignUpConfirm": {
     "title": "Estamos quase lá!",
     "description": "Enviamos um código de confirmação para o seu email. Por favor, insira o código abaixo.",
-    "code": "Código de Confirmação",
+    "confirmationCode": "Código de Confirmação",
     "submit": "Confirmar",
     "resend-code": "Reenviar código",
     "sign-in": "Entrar",
