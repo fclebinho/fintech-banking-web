@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ authenticated, locale }) => {
           </Button>
         ) : (
           <>
-            <Button variant="ghost" onClick={() => router.push("/dashboard")}>
+            <Button variant="ghost" onClick={() => router.push("/signin")}>
               {t("sign-in")}
             </Button>
 

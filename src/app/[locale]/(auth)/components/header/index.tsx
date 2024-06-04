@@ -6,7 +6,11 @@ import { Link, useRouter } from "@/navigation";
 import { WalletIcon } from "lucide-react";
 import React from "react";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  locale: string;
+};
+
+const Header: React.FC<HeaderProps> = ({ locale }) => {
   const router = useRouter();
 
   return (
@@ -14,7 +18,7 @@ const Header: React.FC = () => {
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-4">
-          <SelectLanguage locale="pt-BR" />
+          <SelectLanguage locale={locale} />
         </div>
       </header>
     </div>
