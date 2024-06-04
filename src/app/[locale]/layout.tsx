@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { FC, PropsWithChildren } from "react";
@@ -8,7 +8,7 @@ interface RootLayoutProps extends PropsWithChildren {
   params: { locale: string };
 }
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Gomes Wallet",
