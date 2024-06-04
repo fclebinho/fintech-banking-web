@@ -18,7 +18,7 @@ const auth: AuthOptions = {
           .then((response) => response.json())
           .then((data) => {
             if (data.status === 400) {
-              throw new Error(data.title);
+              throw new Error(data.detail, {});
             }
 
             const authorization = { id: data.access_token };
