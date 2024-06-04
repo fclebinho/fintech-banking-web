@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,6 +15,11 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { confirmSignUp } from "@/app/actions";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import ResendCodeButton from "./components/resend-code";
+import { useSearchParams } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = yup
   .object({
@@ -26,16 +31,36 @@ type Inputs = yup.InferType<typeof formSchema>;
 
 const SignupConfirm: React.FC = () => {
   const t = useTranslations("SignUpConfirm");
+  const [loading, setLoading] = useState<boolean>(false);
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email") ?? "";
 
   const {
-    register,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(formSchema),
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
+    const { code } = data;
+
+    setLoading(true);
+    confirmSignUp({ email, code })
+      .then((response) => {
+        console.log(response);
+        if (response?.status) {
+          toast({
+            variant: "destructive",
+            title: response.title,
+            description: response.detail,
+          });
+        }
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <div className="flex flex-col items-center justify-center mx-4 w-full max-w-md space-y-6">
@@ -75,10 +100,15 @@ const SignupConfirm: React.FC = () => {
                 <p>{errors.code?.message}</p>
               </div>
             </div>
+            <ResendCodeButton email={email ?? ""} />
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              {t("submit")}
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <ReloadIcon className="w-5 h-5 mr-2 animate-spin" />
+              ) : (
+                t("submit")
+              )}
             </Button>
           </CardFooter>
         </form>

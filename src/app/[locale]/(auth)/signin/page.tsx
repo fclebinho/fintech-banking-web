@@ -45,12 +45,24 @@ const SignIn: FC = () => {
       redirect: false,
     })
       .then((response) => {
-        if (response?.error) {
+        console.log(response);
+
+        const { message, code } = JSON.parse(response?.error ?? "{}");
+
+        if (message) {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: response.error,
+            description: message,
           });
+
+          const filterParams = new URLSearchParams({
+            email: username,
+          });
+
+          if (code === "UserNotConfirmedException") {
+            router.push(`/signup-confirm?${filterParams.toString()}`);
+          }
         } else {
           router.push("/dashboard");
         }

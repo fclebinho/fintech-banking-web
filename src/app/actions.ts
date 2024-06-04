@@ -1,10 +1,10 @@
 "use server";
 
-import { number, string } from "yup";
-
 const url = {
   login: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`,
   register: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/register`,
+  confirmSignUp: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/confirm-signup`,
+  resendConfirmationCode: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/resend-confirmation-code`,
 };
 
 export const signIn = async (email: string, password: string) => {
@@ -17,27 +17,10 @@ export const signIn = async (email: string, password: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
-      scope: "openid email profile",
     },
     body,
   });
 };
-
-// type SignUpResponse = {
-//   id: string;
-//   fullName: string;
-//   email: string;
-//   phoneNumber: string;
-//   isVerified: boolean;å
-// };
-
-// tyåpe SignUpErrorResponse = {
-//   åtype: string;
-//   åtitle: string;
-//   åstatus: number;
-//   åinstance: string;
-//   åcode: string;
-// };å
 
 export const signUp = async (
   fullName: string,
@@ -56,7 +39,34 @@ export const signUp = async (
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
-      scope: "openid email profile",
+    },
+    body,
+  }).then((response) => response.json());
+};
+
+type ConfirmSignUpRequest = { email: string; code: string };
+
+export const confirmSignUp = async (req: ConfirmSignUpRequest) => {
+  const body = JSON.stringify(req);
+
+  return fetch(url.confirmSignUp, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body,
+  }).then((response) => response.json());
+};
+
+export const resendConfirmationCode = async (email: string) => {
+  const body = JSON.stringify({
+    email,
+  });
+
+  return fetch(url.resendConfirmationCode, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
     },
     body,
   }).then((response) => response.json());

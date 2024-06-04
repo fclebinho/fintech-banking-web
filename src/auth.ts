@@ -17,8 +17,12 @@ const auth: AuthOptions = {
         return await signIn(credentials.username, credentials.password)
           .then((response) => response.json())
           .then((data) => {
+            console.log(data);
             if (data.status === 400) {
-              throw new Error(data.detail, {});
+              throw new Error(
+                JSON.stringify({ message: data.detail, code: data.error }),
+                {}
+              );
             }
 
             const authorization = { id: data.access_token };

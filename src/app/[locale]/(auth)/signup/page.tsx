@@ -42,6 +42,7 @@ export default function SignUp() {
     setLoading(true);
     signUp(data.fullName, data.phoneNumber, data.email, data.password)
       .then((response) => {
+        console.log(response);
         if (response?.status) {
           toast({
             variant: "destructive",
@@ -49,12 +50,10 @@ export default function SignUp() {
             description: response.detail,
           });
 
-          if (response.ok === false) {
-            router.push("/signup-confirm");
-          }
-        } else {
-          router.push("/signup-confirm");
+          return;
         }
+
+        router.push("/signup-confirm");
       })
       .catch((error) => {
         toast({
