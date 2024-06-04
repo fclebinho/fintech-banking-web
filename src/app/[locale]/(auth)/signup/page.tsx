@@ -8,7 +8,11 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Link } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
+import { signUp } from "@/app/actions";
+import { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = yup
   .object({
@@ -23,6 +27,9 @@ type Inputs = yup.InferType<typeof formSchema>;
 
 export default function SignUp() {
   const t = useTranslations("SignUp");
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { toast } = useToast();
 
   const {
     register,
@@ -31,7 +38,32 @@ export default function SignUp() {
   } = useForm<Inputs>({
     resolver: yupResolver(formSchema),
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setLoading(true);
+    signUp(data.fullName, data.phoneNumber, data.email, data.password)
+      .then((response) => {
+        console.log(response);
+        if (response?.status) {
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: response.error,
+          });
+        } else {
+          router.push("/signup-confirm");
+        }
+      })
+      .catch((error) => {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: error.title,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <div className="mx-auto max-w-sm space-y-6">
@@ -84,8 +116,12 @@ export default function SignUp() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              {t("submit")}
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <ReloadIcon className="w-5 h-5 mr-2 animate-spin" />
+              ) : (
+                t("submit")
+              )}
             </Button>
           </CardFooter>
         </form>

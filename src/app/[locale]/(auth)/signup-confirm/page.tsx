@@ -38,7 +38,7 @@ const SignupConfirm: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <div className="mx-4 w-full max-w-md space-y-6">
+    <div className="flex flex-col items-center justify-center mx-4 w-full max-w-md space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="mt-2 text-gray-500 dark:text-gray-400">

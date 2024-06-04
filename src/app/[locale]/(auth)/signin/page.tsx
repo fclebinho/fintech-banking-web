@@ -7,11 +7,12 @@ import { Label } from "@/components/ui/label";
 import { Link, useRouter } from "@/navigation";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useToast } from "@/components/ui/use-toast";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const formSchema = yup
   .object({
@@ -22,10 +23,11 @@ const formSchema = yup
 
 type Inputs = yup.InferType<typeof formSchema>;
 
-const SignIn: React.FC = () => {
+const SignIn: FC = () => {
   const t = useTranslations("SignIn");
   const router = useRouter();
   const { toast } = useToast();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -35,27 +37,30 @@ const SignIn: React.FC = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = ({ email: username, password }) =>
+  const onSubmit: SubmitHandler<Inputs> = ({ email: username, password }) => {
+    setLoading(true);
     signIn("credentials", {
       username,
       password,
       redirect: false,
     })
-      .then((result) => {
-        if (result?.error) {
+      .then((response) => {
+        if (response?.error) {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: result.error,
+            description: response.error,
           });
         } else {
           router.push("/dashboard");
         }
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  };
 
   return (
-    <div className="mx-4 w-full max-w-md space-y-6">
+    <div className="flex flex-col items-center justify-center mx-4 w-full max-w-md space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight">{t("greetings")}</h1>
         <p className="mt-2 text-gray-500 dark:text-gray-400">
@@ -96,8 +101,12 @@ const SignIn: React.FC = () => {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              {t("submit")}
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <ReloadIcon className="w-5 h-5 mr-2 animate-spin" />
+              ) : (
+                t("submit")
+              )}
             </Button>
           </CardFooter>
         </form>

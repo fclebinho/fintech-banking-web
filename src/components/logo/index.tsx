@@ -12,7 +12,8 @@ const Logo: React.FC = () => {
       prefetch={false}
     >
       <WalletIcon className="h-10 w-10 text-primary" />
-      <p className="flex text-xl">Wallet</p>
+      <p className="flex text-xl font-bold">Garimpei</p>
+      <p className="flex text-xl font-thin">Wallet</p>
     </Link>
   );
 };

@@ -21,7 +21,6 @@ const SelectLanguage: React.FC<SelectLanguageProps> = ({ locale }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log("locale", locale);
   return (
     <div className="flex">
       <DropdownMenu>
