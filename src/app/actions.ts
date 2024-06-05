@@ -1,10 +1,12 @@
 "use server";
 
 const url = {
-  login: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`,
-  register: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/register`,
-  confirmSignUp: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/confirm-signup`,
-  resendConfirmationCode: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/resend-confirmation-code`,
+  authorize: {
+    login: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`,
+    register: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/register`,
+    confirmSignUp: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/confirm-signup`,
+    resendConfirmationCode: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/resend-confirmation-code`,
+  },
 };
 
 export const signIn = async (email: string, password: string) => {
@@ -13,7 +15,7 @@ export const signIn = async (email: string, password: string) => {
     password,
   });
 
-  return await fetch(url.login, {
+  return await fetch(url.authorize.login, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -35,7 +37,7 @@ export const signUp = async (
     password,
   });
 
-  return fetch(url.register, {
+  return fetch(url.authorize.register, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -49,7 +51,7 @@ type ConfirmSignUpRequest = { email: string; confirmationCode: string };
 export const confirmSignUp = async (req: ConfirmSignUpRequest) => {
   const body = JSON.stringify(req);
 
-  return fetch(url.confirmSignUp, {
+  return fetch(url.authorize.confirmSignUp, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -63,7 +65,7 @@ export const resendConfirmationCode = async (email: string) => {
     email,
   });
 
-  return fetch(url.resendConfirmationCode, {
+  return fetch(url.authorize.resendConfirmationCode, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",

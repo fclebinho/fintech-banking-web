@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/components/ui/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +12,13 @@ import {
 } from "@/components/ui/card";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -25,96 +27,127 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useTransaction } from "@/contexts";
-import { ListFilter, File } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Transaction, useTransaction } from "@/contexts";
+import { MoreHorizontal } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
-import React from "react";
+import React, { forwardRef } from "react";
+import { set } from "date-fns";
 
-export const TransactionList: React.FC = () => {
-  const { data } = useTransaction();
+interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const TransactionList: React.FC<TransactionListProps> = (props) => {
+  const t = useTranslations("Transaction");
+  const { data, removeTransaction } = useTransaction();
+  const { toast } = useToast();
+  const [deleteLoading, setDeleteLoading] = React.useState<boolean>(false);
+
+  const handleDelete = (transaction: Transaction) => {
+    setDeleteLoading(true);
+
+    removeTransaction(transaction)
+      .then(() => {
+        toast({
+          title: t("messages.success.title"),
+          description: t("messages.success.delete"),
+        });
+      })
+      .finally(() => setDeleteLoading(false));
+  };
 
   return (
-    <Tabs defaultValue="week">
-      <div className="flex items-center">
-        <TabsList>
-          <TabsTrigger value="week">Week</TabsTrigger>
-          <TabsTrigger value="month">Month</TabsTrigger>
-          <TabsTrigger value="year">Year</TabsTrigger>
-        </TabsList>
-        <div className="ml-auto flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-7 gap-1 text-sm">
-                <ListFilter className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only">Filter</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuCheckboxItem checked>
-                Fulfilled
-              </DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>Declined</DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>Refunded</DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Button size="sm" variant="outline" className="h-7 gap-1 text-sm">
-            <File className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only">Export</span>
-          </Button>
+    <Card {...props} x-chunk="dashboard-07-chunk-0">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("subtitle")}</CardDescription>
+          </div>
+          <div>
+            <Button>{t("create")}</Button>
+          </div>
         </div>
-      </div>
-      <TabsContent value="week">
-        <Card x-chunk="dashboard-05-chunk-3">
-          <CardHeader className="px-7">
-            <CardTitle>Orders</CardTitle>
-            <CardDescription>Recent orders from your store.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Customer</TableHead>
-                  <TableHead className="hidden sm:table-cell">Type</TableHead>
-                  <TableHead className="hidden sm:table-cell">Status</TableHead>
-                  <TableHead className="hidden md:table-cell">Date</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {data?.map((transaction) => (
-                  <TableRow key={transaction.id}>
-                    <TableCell>
-                      <div className="font-medium">
-                        {transaction.customer.fullName}
-                      </div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        {transaction.customer.email}
-                      </div>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      {transaction.type}
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge className="text-xs" variant="secondary">
-                        {transaction.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      {transaction.date}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {transaction.amount}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="hidden w-[100px] sm:table-cell">
+                <span className="sr-only">Image</span>
+              </TableHead>
+              <TableHead>{t("description")}</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="hidden md:table-cell">
+                {t("amount")}
+              </TableHead>
+              <TableHead className="hidden md:table-cell text-center">
+                {t("due_date")}
+              </TableHead>
+              <TableHead className="hidden md:table-cell text-center">
+                {t("created_at")}
+              </TableHead>
+              <TableHead>
+                <span className="sr-only">{t("actions")}</span>
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.map((transaction) => (
+              <TableRow key={transaction.id}>
+                <TableCell className="hidden sm:table-cell">
+                  <Image
+                    alt="Product image"
+                    className="aspect-square rounded-md object-cover"
+                    height="64"
+                    src="/placeholder.svg"
+                    width="64"
+                  />
+                </TableCell>
+                <TableCell className="font-medium">
+                  {transaction.description}
+                </TableCell>
+                <TableCell>
+                  <Badge variant="outline">{transaction.status}</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {transaction.amount.toLocaleString(t("currency.locale"), {
+                    style: "currency",
+                    currency: t("currency.currency"),
+                  })}
+                </TableCell>
+                <TableCell className="hidden md:table-cell text-center">
+                  {new Date(transaction.due_date).toLocaleDateString()}
+                </TableCell>
+                <TableCell className="hidden md:table-cell text-center">
+                  {new Date(transaction.created_at).toLocaleDateString()}
+                </TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button aria-haspopup="true" size="icon" variant="ghost">
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
+                      <DropdownMenuItem>{t("edit")}</DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={deleteLoading}
+                        onClick={() => handleDelete(transaction)}
+                      >
+                        {t("delete")}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   );
 };

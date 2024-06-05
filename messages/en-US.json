@@ -41,5 +41,39 @@
     "resend-code": "Resend code",
     "sign-in": "Sign In",
     "already-have-account": "Already have an account?"
+  },
+  "Transaction": {
+    "title": "Transactions",
+    "subtitle": "Manage and review your financial activities",
+    "description": "Description",
+    "status": "Status",
+    "amount": "Amount",
+    "due_date": "Due Date",
+    "no_date": "No date",
+    "created_at": "Created At",
+    "actions": "Actions",
+    "submit": "Send",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create transaction",
+    "currency": {
+      "locale": "en-US",
+      "currency": "USD"
+    },
+    "messages": {
+      "success": {
+        "title": "Yoo-hoo! Everything went well!",
+        "create": "Transaction created successfully",
+        "update": "Transaction updated successfully",
+        "delete": "Transaction deleted successfully"
+      },
+      "error": {
+        "title": "Uh oh! Something went wrong.",
+        "create": "Error creating transaction",
+        "update": "Error updating transaction",
+        "delete": "Error deleting transaction"
+      }
+    }
   }
 }

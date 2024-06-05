@@ -1,5 +1,6 @@
 "use client";
 
+import SelectLanguage from "@/components/select-language";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,9 +27,11 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
-// import { Container } from './styles';
+type HeaderProps = {
+  locale?: string;
+};
 
-export const Header: React.FC = () => {
+export const Header: React.FC<HeaderProps> = ({ locale }) => {
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -93,6 +96,7 @@ export const Header: React.FC = () => {
           className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
         />
       </div>
+      <SelectLanguage locale={locale} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
