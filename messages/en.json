@@ -41,5 +41,39 @@
     "resend-code": "Reenviar código",
     "sign-in": "Entrar",
     "already-have-account": "Já tem uma conta?"
+  },
+  "Transaction": {
+    "title": "Lançamentos",
+    "subtitle": "Gerencie e revise suas atividades financeiras",
+    "description": "Descrição",
+    "status": "Status",
+    "amount": "Valor",
+    "due_date": "Vencimento",
+    "no_date": "Indefinida",
+    "created_at": "Criado em",
+    "actions": "Ações",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Novo lançamento",
+    "currency": {
+      "locale": "pt-BR",
+      "currency": "BRL"
+    },
+    "messages": {
+      "success": {
+        "title": "Oba! Tudo ocorreu bem!",
+        "create": "Transação criada com sucesso",
+        "update": "Transação atualizada com sucesso",
+        "delete": "Transação excluída com sucesso"
+      },
+      "error": {
+        "title": "Ops! Algo deu errado.",
+        "create": "Erro ao criar transação",
+        "update": "Erro ao atualizar transação",
+        "delete": "Erro ao excluir transação"
+      }
+    }
   }
 }
