@@ -41,7 +41,6 @@ interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const t = useTranslations("Transaction");
-  const { removeTransaction } = useTransaction();
   const { toast } = useToast();
   const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
   const [transaction, setTransaction] = useState<Transaction[]>([]);
@@ -56,18 +55,9 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  const handleDelete = (transaction: Transaction) => {
-    setDeleteLoading(true);
+  const handleDelete = (transaction: Transaction) => {};
 
-    removeTransaction(transaction)
-      .then(() => {
-        toast({
-          title: t("messages.success.title"),
-          description: t("messages.success.delete"),
-        });
-      })
-      .finally(() => setDeleteLoading(false));
-  };
+  console.log("data...:", data);
 
   return (
     <Card {...props} x-chunk="dashboard-07-chunk-0">
