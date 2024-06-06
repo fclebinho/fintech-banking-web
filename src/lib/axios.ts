@@ -11,6 +11,7 @@ api.interceptors.request.use(
     const session = await getSession();
 
     console.log("config.url:", config.url);
+    console.log("config.baseURL:", config.baseURL);
 
     if (session) {
       config.headers.Authorization = `Bearer ${session.token.sub}`;
