@@ -38,6 +38,9 @@ import { FormTransaction } from "../form";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+const fetchTransactions = () =>
+  api.get<Transaction[]>("/transactions").then((res) => res.data);
+
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const t = useTranslations("Transaction");
   const { toast } = useToast();
@@ -45,8 +48,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["transactions"],
-    queryFn: () =>
-      api.get<Transaction[]>("/transactions").then((res) => res.data),
+    queryFn: fetchTransactions,
   });
 
   if (isPending) return "Loading...";
