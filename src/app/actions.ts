@@ -1,17 +1,11 @@
 "use server";
 
-import { Transaction } from "@/contexts";
-import { api } from "@/lib/axios";
-
 const url = {
   authorize: {
     login: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/login`,
     register: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/register`,
     confirmSignUp: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/confirm-signup`,
     resendConfirmationCode: `${process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}/resend-confirmation-code`,
-  },
-  transaction: {
-    list: `${process.env.NEXT_PUBLIC_TRANSACTION_API_URL}/transactions`,
   },
 };
 
@@ -79,6 +73,3 @@ export const resendConfirmationCode = async (email: string) => {
     body,
   }).then((response) => response.json());
 };
-
-export const fetchTransactions = () =>
-  api.get<Transaction[]>(url.transaction.list).then((res) => res.data);

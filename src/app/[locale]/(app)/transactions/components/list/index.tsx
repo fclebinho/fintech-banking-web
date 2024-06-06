@@ -33,7 +33,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { FormTransaction } from "../form";
-import { fetchTransactions } from "@/app/actions";
+import { fetchTransactions } from "@/lib/transactions";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
