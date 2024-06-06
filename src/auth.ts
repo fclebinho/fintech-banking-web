@@ -26,7 +26,6 @@ const auth: AuthOptions = {
               );
             }
 
-            console.log("data", data.access_token);
             const authorization = { id: data.access_token };
 
             if (authorization) {
@@ -46,12 +45,10 @@ const auth: AuthOptions = {
     async session({ session, user, token }) {
       session.user = user as User & AdapterUser;
       session.token = token as JWT;
-      console.log("token", token);
 
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      console.log("jwt", token);
       return token;
     },
   },

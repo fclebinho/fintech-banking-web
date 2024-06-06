@@ -83,7 +83,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
         </div>
       </CardHeader>
       <CardContent>
-        {data.length > 0 ? (
+        {data && data.length > 0 ? (
           <Table>
             <TableHeader>
               <TableRow>
@@ -107,61 +107,62 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.map((transaction) => (
-                <TableRow key={transaction.id}>
-                  <TableCell className="hidden sm:table-cell">
-                    <Image
-                      alt="Product image"
-                      className="aspect-square rounded-md object-cover"
-                      height="64"
-                      src="/placeholder.svg"
-                      width="64"
-                    />
-                  </TableCell>
-                  <TableCell className="font-medium">
-                    {transaction.description}
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{transaction.status}</Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {transaction.amount.toLocaleString(t("currency.locale"), {
-                      style: "currency",
-                      currency: t("currency.currency"),
-                    })}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell text-center">
-                    {new Date(transaction.due_date).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell text-center">
-                    {new Date(transaction.created_at).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          aria-haspopup="true"
-                          size="icon"
-                          variant="ghost"
-                        >
-                          <MoreHorizontal className="h-4 w-4" />
-                          <span className="sr-only">Toggle menu</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                        <DropdownMenuItem>{t("edit")}</DropdownMenuItem>
-                        <DropdownMenuItem
-                          disabled={deleteLoading}
-                          onClick={() => handleDelete(transaction)}
-                        >
-                          {t("delete")}
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {data &&
+                data.map((transaction) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell className="hidden sm:table-cell">
+                      <Image
+                        alt="Product image"
+                        className="aspect-square rounded-md object-cover"
+                        height="64"
+                        src="/placeholder.svg"
+                        width="64"
+                      />
+                    </TableCell>
+                    <TableCell className="font-medium">
+                      {transaction.description}
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{transaction.status}</Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {transaction.amount.toLocaleString(t("currency.locale"), {
+                        style: "currency",
+                        currency: t("currency.currency"),
+                      })}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell text-center">
+                      {new Date(transaction.due_date).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell text-center">
+                      {new Date(transaction.created_at).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            aria-haspopup="true"
+                            size="icon"
+                            variant="ghost"
+                          >
+                            <MoreHorizontal className="h-4 w-4" />
+                            <span className="sr-only">Toggle menu</span>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
+                          <DropdownMenuItem>{t("edit")}</DropdownMenuItem>
+                          <DropdownMenuItem
+                            disabled={deleteLoading}
+                            onClick={() => handleDelete(transaction)}
+                          >
+                            {t("delete")}
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         ) : (
