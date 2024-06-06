@@ -51,6 +51,7 @@ const auth: AuthOptions = {
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
+      console.log("jwt", token);
       return token;
     },
   },

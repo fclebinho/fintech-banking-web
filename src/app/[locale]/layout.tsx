@@ -5,6 +5,7 @@ import { NextIntlClientProvider, useMessages } from "next-intl";
 import { FC, PropsWithChildren } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import QueryClientProvider from "./components/query-client-provider";
 
 interface RootLayoutProps extends PropsWithChildren {
   params: { locale: string };
@@ -24,7 +25,9 @@ const RootLayout: FC<RootLayoutProps> = ({ children, params: { locale } }) => {
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <QueryClientProvider>{children}</QueryClientProvider>
+          </TooltipProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>
