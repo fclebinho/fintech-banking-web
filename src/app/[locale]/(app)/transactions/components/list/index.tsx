@@ -28,14 +28,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Textarea } from "@/components/ui/textarea";
 import { Transaction, useTransaction } from "@/contexts";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
-import { getTransactions } from "@/app/actions";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -43,7 +41,6 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const t = useTranslations("Transaction");
   const { toast } = useToast();
   const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
-  const [transaction, setTransaction] = useState<Transaction[]>([]);
 
   const { isPending, error, data } = useQuery({
     queryKey: ["transactions"],
@@ -54,8 +51,6 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
   if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
-
-  const handleDelete = (transaction: Transaction) => {};
 
   console.log("data...:", data);
 
@@ -144,7 +139,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
                           <DropdownMenuItem>{t("edit")}</DropdownMenuItem>
                           <DropdownMenuItem
                             disabled={deleteLoading}
-                            onClick={() => handleDelete(transaction)}
+                            onClick={() => () => {}}
                           >
                             {t("delete")}
                           </DropdownMenuItem>
