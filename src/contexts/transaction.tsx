@@ -1,5 +1,6 @@
 "use client";
 
+import { api } from "@/lib/axios";
 import React, { PropsWithChildren, useContext } from "react";
 
 const mock = [
@@ -91,6 +92,7 @@ type TransactionContextProps = {
   data: Transaction[];
   addTransaction: (transaction: Transaction) => Promise<Transaction>;
   removeTransaction: (transaction: Transaction) => Promise<void>;
+  getTransactions: () => Promise<void>;
 };
 
 const TransactionContext = React.createContext<TransactionContextProps>(
@@ -116,9 +118,17 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
       resolve();
     });
 
+  const getTransactions = () =>
+    new Promise<void>((resolve, reject) => {
+      api.get("/transactions").then((response) => {
+        setData(response.data);
+        resolve();
+      });
+    });
+
   return (
     <TransactionContext.Provider
-      value={{ data, addTransaction, removeTransaction }}
+      value={{ data, addTransaction, removeTransaction, getTransactions }}
     >
       {children}
     </TransactionContext.Provider>

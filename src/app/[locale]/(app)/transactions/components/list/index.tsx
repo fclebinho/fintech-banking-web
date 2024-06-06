@@ -34,13 +34,12 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import React, { forwardRef } from "react";
-import { set } from "date-fns";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const t = useTranslations("Transaction");
-  const { data, removeTransaction } = useTransaction();
+  const { data, removeTransaction, getTransactions } = useTransaction();
   const { toast } = useToast();
   const [deleteLoading, setDeleteLoading] = React.useState<boolean>(false);
 

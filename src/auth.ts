@@ -1,6 +1,8 @@
-import { AuthOptions } from "next-auth";
+import { AuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "@/app/actions";
+import { JWT } from "next-auth/jwt";
+import { AdapterUser } from "next-auth/adapters";
 
 const auth: AuthOptions = {
   providers: [
@@ -24,6 +26,7 @@ const auth: AuthOptions = {
               );
             }
 
+            console.log("data", data.access_token);
             const authorization = { id: data.access_token };
 
             if (authorization) {
@@ -35,6 +38,22 @@ const auth: AuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_JWT,
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async session({ session, user, token }) {
+      session.user = user as User & AdapterUser;
+      session.token = token as JWT;
+      console.log("token", token);
+
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      return token;
+    },
+  },
 };
 
 export default auth;
