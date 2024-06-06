@@ -34,6 +34,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
+import { FormTransaction } from "../form";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -63,7 +64,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
             <CardDescription>{t("subtitle")}</CardDescription>
           </div>
           <div>
-            <Button>{t("create")}</Button>
+            <FormTransaction />
           </div>
         </div>
       </CardHeader>

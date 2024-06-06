@@ -57,6 +57,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "create": "Create transaction",
+    "type": "Type",
     "currency": {
       "locale": "en-US",
       "currency": "USD"

@@ -57,6 +57,7 @@
     "delete": "Excluir",
     "edit": "Editar",
     "create": "Criar lançamento",
+    "type": "Tipo",
     "currency": {
       "locale": "pt-BR",
       "currency": "BRL"
