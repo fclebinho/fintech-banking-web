@@ -28,18 +28,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Transaction, useTransaction } from "@/contexts";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/lib/axios";
 import { FormTransaction } from "../form";
+import { fetchTransactions } from "@/app/actions";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const fetchTransactions = () =>
-  api.get<Transaction[]>("/transactions").then((res) => res.data);
 
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const t = useTranslations("Transaction");
