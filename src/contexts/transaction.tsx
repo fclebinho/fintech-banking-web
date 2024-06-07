@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "@/lib/axios";
+import api from "@/lib/axios";
 import React, { PropsWithChildren, useContext } from "react";
 
 const mock = [
