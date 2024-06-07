@@ -2,7 +2,7 @@ import axios from "axios";
 import { getSession } from "next-auth/react";
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_TRANSACTION_API_URL,
+  baseURL: "https://banking-api.gomes.dev",
 });
 
 // Add a request interceptor
