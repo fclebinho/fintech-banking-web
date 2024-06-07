@@ -1,8 +1,8 @@
 import { Transaction } from "@/contexts";
-import { api } from "./axios";
+import api from "./axios";
 
 // With BaseURL
-api.defaults.baseURL = process.env.NEXT_PUBLIC_TRANSACTION_API_URL;
+// api.defaults.baseURL = process.env.NEXT_PUBLIC_TRANSACTION_API_URL;
 
 const url = {
   transaction: {
