@@ -51,8 +51,6 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  console.log("data...:", data);
-
   return (
     <Card {...props} x-chunk="dashboard-07-chunk-0">
       <CardHeader>

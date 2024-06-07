@@ -1,14 +1,16 @@
 import { Transaction } from "@/contexts";
 import api from "./axios";
+import { create } from "domain";
 
 const url = {
-  transaction: {
-    list: `${process.env.NEXT_PUBLIC_API_URL}/users`,
-  },
+  transaction: `${process.env.NEXT_PUBLIC_API_URL}/transactions`,
 };
 
 export const fetchTransactions = () =>
-  api.get<Transaction[]>(url.transaction.list).then((res) => res.data);
+  api.get<Transaction[]>(url.transaction).then((res) => res.data);
 
 export const createTransaction = (data: any) =>
-  api.post<Transaction>("/transactions", data);
+  api.post<Transaction>(url.transaction, data);
+
+export const deleteTransaction = (id: string) =>
+  api.delete<Transaction>(`${url.transaction}/${id}`);
