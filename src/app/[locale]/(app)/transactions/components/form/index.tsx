@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -10,14 +9,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Transaction } from "@/contexts";
-import { api } from "@/lib/axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { use, useState } from "react";
+import { createTransaction } from "@/lib/transactions";
 
 const formSchema = yup
   .object({
@@ -34,8 +31,6 @@ type Inputs = yup.InferType<typeof formSchema>;
 export function FormTransaction() {
   const t = useTranslations("Transaction");
   const queryClient = useQueryClient();
-  const createTransaction = (data: Inputs) =>
-    api.post<Transaction>("/transactions", data);
 
   const {
     register,

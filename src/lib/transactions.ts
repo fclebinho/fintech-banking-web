@@ -1,9 +1,6 @@
 import { Transaction } from "@/contexts";
 import api from "./axios";
 
-// With BaseURL
-// api.defaults.baseURL = process.env.NEXT_PUBLIC_TRANSACTION_API_URL;
-
 const url = {
   transaction: {
     list: "/transactions",
@@ -12,3 +9,6 @@ const url = {
 
 export const fetchTransactions = () =>
   api.get<Transaction[]>(url.transaction.list).then((res) => res.data);
+
+export const createTransaction = (data: any) =>
+  api.post<Transaction>("/transactions", data);
