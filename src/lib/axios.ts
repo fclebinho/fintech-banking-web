@@ -2,7 +2,7 @@ import axios from "axios";
 import { getSession } from "next-auth/react";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.API_URL,
 });
 
 // Add a request interceptor
@@ -22,3 +22,7 @@ api.interceptors.request.use(
 );
 
 export default api;
+
+export async function getServerSideProps() {
+  return { props: { transaction_api: process.env.API_URL } };
+}

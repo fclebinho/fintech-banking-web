@@ -46,9 +46,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
   const { isPending, error, data } = useQuery({
     queryKey: ["transactions"],
     queryFn: () =>
-      api
-        .get<Transaction[]>(`${process.env.NEXT_PUBLIC_API_URL}/transactions`)
-        .then((res) => res.data),
+      api.get<Transaction[]>("/transactions").then((res) => res.data),
   });
 
   if (isPending) return "Loading...";
