@@ -14,12 +14,12 @@ const Config: React.FC = () => {
         </thead>
         <tbody>
           <tr>
-            <td>NEXT_PUBLIC_AUTHORIZE_API_URL</td>
-            <td>{process.env.NEXT_PUBLIC_AUTHORIZE_API_URL}</td>
+            <td>API_URL_AUTH</td>
+            <td>{process.env.API_URL_AUTH}</td>
           </tr>
           <tr>
-            <td>NEXT_PUBLIC_API_URL</td>
-            <td>{process.env.NEXT_PUBLIC_API_URL}</td>
+            <td>API_URL</td>
+            <td>{process.env.API_URL}</td>
           </tr>
         </tbody>
       </table>
