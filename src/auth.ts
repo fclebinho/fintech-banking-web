@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "@/app/actions";
 import { JWT } from "next-auth/jwt";
 import { AdapterUser } from "next-auth/adapters";
+import api from "./lib/axios";
 
 const auth: AuthOptions = {
   providers: [
