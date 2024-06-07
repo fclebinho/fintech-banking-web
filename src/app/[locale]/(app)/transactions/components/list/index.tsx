@@ -33,7 +33,8 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { FormTransaction } from "../form";
-import { fetchTransactions } from "@/lib/transactions";
+import api from "@/lib/axios";
+import { Transaction } from "@/contexts";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -44,7 +45,10 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["transactions"],
-    queryFn: fetchTransactions,
+    queryFn: () =>
+      api
+        .get<Transaction[]>(`${process.env.NEXT_PUBLIC_API_URL}/transactions`)
+        .then((res) => res.data),
   });
 
   if (isPending) return "Loading...";
