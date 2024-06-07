@@ -2,10 +2,10 @@
 
 const url = {
   authorize: {
-    login: `${process.env.AUTH_API_URL}/login`,
-    register: `${process.env.AUTH_API_URL}/register`,
-    confirmSignUp: `${process.env.AUTH_API_URL}/confirm-signup`,
-    resendConfirmationCode: `${process.env.AUTH_API_URL}/resend-confirmation-code`,
+    login: `${process.env.NEXT_PUBLIC_AUTH_API_URL}/login`,
+    register: `${process.env.NEXT_PUBLIC_AUTH_API_URL}/register`,
+    confirmSignUp: `${process.env.NEXT_PUBLIC_AUTH_API_URL}/confirm-signup`,
+    resendConfirmationCode: `${process.env.NEXT_PUBLIC_AUTH_API_URL}/resend-confirmation-code`,
   },
 };
 

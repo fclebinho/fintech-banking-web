@@ -34,12 +34,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME}}/banking-web:${{ github.sha }}
             ${{ secrets.DOCKER_HUB_USERNAME}}/banking-web:latest
-        env:
-          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET}}
-          NEXTAUTH_JWT: ${{ secrets.NEXTAUTH_JWT}}
-          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL}}
-          API_URL_AUTH: ${{ secrets.API_URL_AUTH}}
-          API_URL_TRANSACTION: ${{ secrets.API_URL_TRANSACTION}}
 
   deployment:
     runs-on: ubuntu-latest
