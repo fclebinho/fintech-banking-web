@@ -3,7 +3,7 @@ import api from "./axios";
 
 const url = {
   transaction: {
-    list: "/transactions",
+    list: `${process.env.NEXT_PUBLIC_API_URL}/users`,
   },
 };
 
