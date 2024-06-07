@@ -8,6 +8,7 @@ const publicPages = [
   "/signin",
   "/signup",
   "/signup-confirm",
+  "/config",
   // (/secret requires auth)
 ];
 
