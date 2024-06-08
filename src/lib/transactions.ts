@@ -1,6 +1,5 @@
 import { Transaction } from "@/contexts";
 import api from "./axios";
-import { create } from "domain";
 
 const url = {
   transaction: `${process.env.NEXT_PUBLIC_API_URL}/transactions`,
