@@ -18,8 +18,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -33,8 +31,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { FormTransaction } from "../form";
-import api from "@/lib/axios";
-import { Transaction } from "@/contexts";
+import { fetchTransactions } from "@/lib/transactions";
 
 interface TransactionListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -45,8 +42,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["transactions"],
-    queryFn: () =>
-      api.get<Transaction[]>("/transactions").then((res) => res.data),
+    queryFn: () => fetchTransactions(),
   });
 
   if (isPending) return "Loading...";
